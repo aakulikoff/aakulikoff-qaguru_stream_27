@@ -1,6 +1,7 @@
 package tests;
 
-import org.junit.jupiter.api.Test;
+import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.*;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -24,11 +25,16 @@ public class PracticeFormTest {
             state = "NCR",
             city = "Delhi";
 
+    @BeforeEach
+    public void setUp () {
+        Configuration.pageLoadStrategy = "eager";
+    }
+
     @Test
     void fillFormTest() {
 
         open("https://demoqa.com/automation-practice-form");
-        $(".main-header").shouldHave(text("Practice Form"));
+        $(".text-center").shouldHave(text("Practice Form"));
         $("#firstName").setValue(firstName);
         $("#lastName").setValue(lastName);
         $("#userEmail").setValue(userEmail);
@@ -40,6 +46,7 @@ public class PracticeFormTest {
         $(".react-datepicker__month-select").selectOption(monthOfBirth);
         $(".react-datepicker__year-select").selectOption(yearOfBirth);
         $("[aria-label='Choose Sunday, August 2nd, 1987']").click();
+
 //          выбор даты рождения из появившейся формы #2:
 //        $("#dateOfBirthInput").click();
 //        $(".react-datepicker__month-select").selectOption(monthOfBirth);
