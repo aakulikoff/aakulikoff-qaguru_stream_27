@@ -9,7 +9,9 @@ import static com.codeborne.selenide.Selenide.*;
 
 
 public class PracticeFormTest {
-    String firstName = "Peter",
+    String  baseUrl = "https://demoqa.com/automation-practice-form",
+            text = "Practice Form",
+            firstName = "Peter",
             lastName = "The Great",
             userEmail = "russia@rf.ru",
             userNumber = "9119991122",
@@ -33,8 +35,8 @@ public class PracticeFormTest {
     @Test
     void fillFormTest() {
 
-        open("https://demoqa.com/automation-practice-form");
-        $(".text-center").shouldHave(text("Practice Form"));
+        open(baseUrl);
+        $(".text-center").shouldHave(text(text));
         $("#firstName").setValue(firstName);
         $("#lastName").setValue(lastName);
         $("#userEmail").setValue(userEmail);
