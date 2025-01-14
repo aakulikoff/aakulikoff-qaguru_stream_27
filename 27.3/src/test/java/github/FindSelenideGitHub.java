@@ -32,7 +32,7 @@ public class FindSelenideGitHub {
 //        $$("ul.repo-list li").first().$("a").click();
 
         //проверить, что в заголовке встречается selenide/selenide
-        $(("h1"),0).shouldHave(text("selenide / selenide"));
+        $("#repository-container-header").shouldHave(text("selenide / selenide"));
 
         //кликнуть по Wiki
         $("#wiki-tab").click();
