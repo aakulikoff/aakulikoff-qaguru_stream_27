@@ -16,6 +16,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class Snippets {
 
   void browser_command_examples() {
+
     open("https://google.com");
     open("/customer/orders");     // -Dselenide.baseUrl=http://123.23.23.1
     open("/", AuthenticationType.BASIC,
@@ -209,7 +210,6 @@ public class Snippets {
     executeJavaScript("alert('selenide')");
     executeJavaScript("alert(arguments[0]+arguments[1])", "abc", 12);
     long fortytwo = executeJavaScript("return arguments[0]*arguments[1];", 6, 7);
-
   }
 }
 

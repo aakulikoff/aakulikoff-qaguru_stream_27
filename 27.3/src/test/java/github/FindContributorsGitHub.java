@@ -21,4 +21,17 @@ public class FindContributorsGitHub {
         $$(".Popover-message").findBy(visible)
                 .shouldHave(text("Andrei Solntsev"));
     }
+
+    @Test
+    void popUpClickTestV2() {
+        // open selenide repository
+        open("https://github.com/selenide/selenide");
+        // hover mouse over the first avatar in contributors block
+        $("div.Layout-sidebar").find(byText("Contributors"))
+                .ancestor("div").$$("ul li").first().hover();
+
+        // check: the popup window has text Andrei Solntsev
+        $$(".Popover-message").findBy(visible).shouldHave(text(("Andrei Solntsev")));
+
+    }
 }
