@@ -2,14 +2,12 @@ package tests;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.*;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-
 public class PracticeFormTest {
-    String  baseUrl = "https://demoqa.com/automation-practice-form",
+    String baseUrl = "https://demoqa.com/automation-practice-form",
             text = "Practice Form",
             firstName = "Peter",
             lastName = "The Great",
@@ -28,7 +26,7 @@ public class PracticeFormTest {
             city = "Delhi";
 
     @BeforeEach
-    public void setUp () {
+    public void setUp() {
         Configuration.pageLoadStrategy = "eager";
     }
 
@@ -48,20 +46,17 @@ public class PracticeFormTest {
         $(".react-datepicker__month-select").selectOption(monthOfBirth);
         $(".react-datepicker__year-select").selectOption(yearOfBirth);
         $("[aria-label='Choose Sunday, August 2nd, 1987']").click();
-
 //          выбор даты рождения из появившейся формы #2:
 //        $("#dateOfBirthInput").click();
 //        $(".react-datepicker__month-select").selectOption(monthOfBirth);
 //        $(".react-datepicker__year-select").selectOption(yearOfBirth);
 //        $(String.format("[aria-label='Choose %s, %s %sth, %s']",
 //        dayOfWeekOfBirth, monthOfBirth, dayOfBirth, yearOfBirth)).click();
-
 //          выбор даты рождения из появившейся формы #3:
 //        $(by("aria-label", "Choose Tuesday, May 10th, 1988")).click();
 //        $$(String.format(".react-datepicker__day--0%s", dayOfBirth))
 //                .filter(not(cssClass("react-datepicker__day--outside-month")))
 //                .first().click();
-
 //          выбор даты рождения из появившейся формы #4:
 //        $$(".react-datepicker__day--0" + dayOfBirth)
 //                .filter(not(cssClass("react-datepicker__day--outside-month")))
@@ -71,7 +66,6 @@ public class PracticeFormTest {
 
 //        выборор нужного параметра из всплывающих подсказок №1:
         $("#subjectsInput").val(subject).pressEnter();
-
 //        выборор нужного параметра из всплывающих подсказок №2:
 //        $("#subjectsInput").val(subjectsInput);
 //        $(".subjects-auto-complete__menu-list").$(byText(subjectsInput)).click(); или $(byText(subjectsInput)).click()
@@ -81,7 +75,6 @@ public class PracticeFormTest {
 
 //        загрузка фото из файла #1:
         $("#uploadPicture").uploadFromClasspath("img/" + picture);
-
 //        загрузка фото из файла #2:
 //        $("#uploadPicture").uploadFile(new File("src/test/resources/img/" + picture));
 
@@ -110,6 +103,5 @@ public class PracticeFormTest {
         $x("//td[text()='Picture']").parent().shouldHave(text(picture));
         $x("//td[text()='Address']").parent().shouldHave(text(currentAddress));
         $x("//td[text()='State and City']").parent().shouldHave(text(state + " " + city));
-
     }
 }

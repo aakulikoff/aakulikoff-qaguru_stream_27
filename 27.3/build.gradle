@@ -10,9 +10,7 @@ dependencies {
     testImplementation(
             "com.codeborne:selenide:6.19.1",
             "org.junit.jupiter:junit-jupiter-api:5.10.0",
-//            "org.slf4j:slf4j-simple:2.0.7"
-            //доп логирование
-
+            "org.slf4j:slf4j-simple:2.0.7" //доп логирование
     )
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.1"
 }
