@@ -1,6 +1,7 @@
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.*;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byTagAndText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.url;
@@ -17,8 +18,9 @@ public class GithubSolutionsTest {
     void openEnterprisePage() {
         open("https://github.com");
         $("nav").$(byTagAndText("button","Solutions")).hover();
-        $("[href='/enterprise']").click();
-//        $(byTagAndText("a", "Enterprise")).click();
+//        $("[href='/enterprise']").click();
+        $(byTagAndText("a", "Enterprise")).click();
         webdriver().shouldHave(url("https://github.com/enterprise"));
+        $(".application-main").shouldHave(text("To build, scale, and deliver secure software."));
     }
 }
