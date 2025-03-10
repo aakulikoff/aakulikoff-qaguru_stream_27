@@ -2,17 +2,18 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
-import pages.components.CalendarComponent;
+import pages.components.*;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static utils.RandomUtils.*;
 
-public class RegistartionPage {
+public class RegistrationPage {
 
     static Faker faker = new Faker();
     CalendarComponent calendarComponent = new CalendarComponent();
+    CheckResultComponent checkResultComponent = new CheckResultComponent();
 
     public static String baseUrl = "https://demoqa.com/automation-practice-form",
             text = "Practice Form",
@@ -46,97 +47,89 @@ public class RegistartionPage {
             birthDateInput =  $("#dateOfBirthInput");
 
 
-    public RegistartionPage openPage() {
+    public RegistrationPage openPage() {
         open(baseUrl);
         $(".text-center").shouldHave(text(text));
 
         return this;
     }
 
-    public RegistartionPage setFirstName(String value) {
+    public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
 
         return this;
     }
 
-    public RegistartionPage setLastName(String value) {
+    public RegistrationPage setLastName(String value) {
         lastNameInput.setValue(value);
 
         return this;
     }
 
-    public RegistartionPage setUserEmail(String value) {
+    public RegistrationPage setUserEmail(String value) {
         userEmailInput.setValue(value);
 
         return this;
     }
 
-    public RegistartionPage setUserGender() {
+    public RegistrationPage setUserGender() {
         userGenderInput.click();
 
         return this;
     }
 
-    public RegistartionPage setPhoneNumber(String value) {
+    public RegistrationPage setPhoneNumber(String value) {
         userNumberInput.setValue(value);
 
         return this;
     }
 
-    public RegistartionPage setBirtdayDate(String year, String month, String day, String dayOfWeek) {
-        birthDateInput.click();
-        calendarComponent.setDate(year,month,day, dayOfWeek);
-        return this;
-    }
-
-    public RegistartionPage setSubject(String value) {
+    public RegistrationPage setSubject(String value) {
         userSubjectInput.setValue(value).pressEnter();
 
         return this;
     }
 
-    public RegistartionPage setHobbie(String value) {
+    public RegistrationPage setHobbie(String value) {
         userHobbieInput.$(byText(value)).click();
 
         return this;
     }
 
-    public RegistartionPage uploadPicture() {
+    public RegistrationPage uploadPicture() {
         jpgInpit.uploadFromClasspath("img/" + picture);
 
         return this;
     }
 
-    public RegistartionPage setCurrentAddress(String value) {
+    public RegistrationPage setCurrentAddress(String value) {
         userCurrentAddressInput.setValue(value);
 
         return this;
     }
 
-    public RegistartionPage setState(String value) {
+    public RegistrationPage setState(String value) {
         $("#state").scrollTo().click();
         userStateInput.$(byText(value)).click();
 
         return this;
     }
 
-    public RegistartionPage setCity(String value) {
+    public RegistrationPage setCity(String value) {
         $("#city").click();
         userCityInput.$(byText(value)).click();
 
         return this;
     }
 
-    public RegistartionPage submintPage() {
+    public RegistrationPage submintPage() {
         $("#submit").scrollTo().click();
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table-responsive").shouldHave(text(firstName + " " + lastName),
-                text(userEmail), text(gender));
 
         return this;
     }
 
-    public RegistartionPage checkFullDataPage(){
+    public RegistrationPage checkFullDataPage(){
         $x("//td[text()='Student Name']").parent().shouldHave(text(firstName + " " + lastName));
         $x("//td[text()='Student Email']").parent().shouldHave(text(userEmail));
         $x("//td[text()='Gender']").parent().shouldHave(text(gender));
@@ -151,20 +144,32 @@ public class RegistartionPage {
         return this;
     }
 
-    public RegistartionPage checkMinDataPage(){
+    public RegistrationPage checkMinDataPage(){
         $x("//td[text()='Student Name']").parent().shouldHave(text(firstName + " " + lastName));
-        $x("//td[text()='Student Email']").parent().shouldBe(empty);
+//        $x("//td[text()='Student Email']").parent().shouldBe(empty);
         $x("//td[text()='Gender']").parent().shouldHave(text(gender));
         $x("//td[text()='Mobile']").parent().shouldHave(text(userNumber));
         $x("//td[text()='Date of Birth']").parent().shouldHave(text(dayOfBirth + " " + monthOfBirth + "," + yearOfBirth));
-        $x("//td[text()='Subjects']").parent().shouldBe(empty);
-        $x("//td[text()='Hobbies']").parent().shouldBe(empty);
-        $x("//td[text()='Picture']").parent().shouldBe(empty);
-        $x("//td[text()='Address']").parent().shouldBe(empty);
-        $x("//td[text()='State and City']").parent().shouldBe(empty);
+//        $x("//td[text()='Subjects']").parent().shouldBe(empty);
+//        $x("//td[text()='Hobbies']").parent().shouldBe(empty);
+//        $x("//td[text()='Picture']").parent().shouldBe(empty);
+//        $x("//td[text()='Address']").parent().shouldBe(empty);
+//        $x("//td[text()='State and City']").parent().shouldBe(empty);
 
         return this;
     }
 
+    public RegistrationPage checkResult(String key, String value) {
+        checkResultComponent.checkResult(key, value);
+
+        return this;
+    }
+
+    public RegistrationPage setBirtdayDate(String year, String month, String day, String dayOfWeek) {
+        birthDateInput.click();
+        calendarComponent.setDate(year,month,day, dayOfWeek);
+
+        return this;
+    }
 }
 

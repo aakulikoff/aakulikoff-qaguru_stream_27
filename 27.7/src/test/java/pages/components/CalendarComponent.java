@@ -1,9 +1,7 @@
 package pages.components;
 
-import pages.RegistartionPage;
-
 import static com.codeborne.selenide.Selenide.$;
-import static pages.RegistartionPage.*;
+import static pages.RegistrationPage.*;
 
 public class CalendarComponent {
     public void setDate (String year, String month, String day, String dayOfWeek) {

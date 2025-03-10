@@ -30,25 +30,21 @@ public class RandomUtils {
                 "runs", "jumps", "talks", "sleeps", "walks",
                 "loves", "hates", "sees", "knows", "looks for", "finds",
                 ", ", ", ", ", ", ". ", ". "};
-
         StringBuilder message = new StringBuilder();
         int messageLength = getRandomInt(min, max);
         while (message.length() < messageLength) {
             int wordIndex = getRandomInt(0, words.length - 1);
             message.append(words[wordIndex] + " ");
         }
-
         String readyMessage = StringUtils.capitalize(message.toString())
                 .replace("  ", " ")
                 .replace(" ,", ",")
                 .replace(" .", ".").trim();
-
         return readyMessage;
     }
 
     public static int getRandomInt(int min, int max) {
         Random r = new Random();
-
         return r.nextInt((max - min) + 1) + min;
     }
 
