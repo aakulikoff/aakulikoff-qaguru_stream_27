@@ -1,9 +1,8 @@
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import org.hamcrest.Matchers;
+package tests;
+
 import org.junit.jupiter.api.*;
 
-import static Utils.FileUtils.readStringFromFile;
+import static utils.FileUtils.readStringFromFile;
 import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
