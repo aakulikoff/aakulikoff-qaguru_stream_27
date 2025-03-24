@@ -1,6 +1,6 @@
 package tests;
 
-import models.*;
+import models.lombok.*;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -13,11 +13,11 @@ public class StatusExtendedTests extends TestBase {
     @Test
     void successfulLogin2() {
 
-        LoginBodyModels authData = new LoginBodyModels();
+        LoginBodyLombokModels authData = new LoginBodyLombokModels();
         authData.setEmail("eve.holt@reqres.in");
         authData.setPassword("cityslicka");
 
-        LoginResponseModels response = given()
+        LoginResponseLombokModels response = given()
                 .contentType(JSON)
                 .body(authData)
         .when()
@@ -26,7 +26,7 @@ public class StatusExtendedTests extends TestBase {
                 .log().status()
                 .log().body()
                 .statusCode(200)
-                .extract().as(LoginResponseModels.class);
+                .extract().as(LoginResponseLombokModels.class);
 
         assertEquals("QpwL5tke4Pnpja7X4", response.getToken());
     }

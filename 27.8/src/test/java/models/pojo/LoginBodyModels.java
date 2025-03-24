@@ -1,4 +1,4 @@
-package models;
+package models.pojo;
 
 public class LoginBodyModels {
     //        String authData = "{ \"email\": \"eve.holt@reqres.in\", \"password\": \"cityslicka\" }";
