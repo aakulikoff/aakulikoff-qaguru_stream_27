@@ -1,0 +1,34 @@
+package specs;
+
+import io.qameta.allure.restassured.AllureRestAssured;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.specification.*;
+
+import static helpers.AllureListner.withCustomTemplates;
+import static io.restassured.RestAssured.with;
+import static io.restassured.filter.log.LogDetail.*;
+import static io.restassured.http.ContentType.JSON;
+
+public class LoginSpec {
+
+    public static RequestSpecification loginRequestSpec = with()
+            .filter(withCustomTemplates())
+            .log().uri()
+            .log().body()
+            .log().headers()
+            .contentType(JSON)
+            .baseUri("https://reqres.in")
+            .basePath("/api/login");
+
+    public static ResponseSpecification  loginResponseSpec = new ResponseSpecBuilder()
+            .expectStatusCode(200)
+            .log(STATUS)
+            .log(BODY)
+            .build();
+
+    public static ResponseSpecification  missingPasswordResponseSpec = new ResponseSpecBuilder()
+            .expectStatusCode(400)
+            .log(STATUS)
+            .log(BODY)
+            .build();
+}

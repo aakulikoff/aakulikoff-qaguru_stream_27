@@ -5,11 +5,13 @@ import models.lombok.*;
 import models.pojo.*;
 import org.junit.jupiter.api.Test;
 
+import static helpers.AllureListner.withCustomTemplates;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static specs.LoginSpec.*;
 
 public class StatusExtendedTests extends TestBase {
 
@@ -50,9 +52,9 @@ public class StatusExtendedTests extends TestBase {
                 .log().headers()
                 .contentType(JSON)
                 .body(authData)
-                .when()
+        .when()
                 .post("login")
-                .then()
+        .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
@@ -94,7 +96,7 @@ public class StatusExtendedTests extends TestBase {
         authData.setPassword("cityslicka");
 
         LoginResponseLombokModels response = given()
-                .filter(new AllureRestAssured())
+                .filter(withCustomTemplates())
                 .log().uri()
                 .log().body()
                 .log().headers()
@@ -136,6 +138,48 @@ public class StatusExtendedTests extends TestBase {
 
         step( "Проверить ответ", ()->
             assertEquals("QpwL5tke4Pnpja7X4", response.getToken()));
+    }
+
+
+    @Test
+    void successfulLoginWithSpecTest() {
+
+        LoginBodyLombokModels authData = new LoginBodyLombokModels();
+        authData.setEmail("eve.holt@reqres.in");
+        authData.setPassword("cityslicka");
+
+        LoginResponseLombokModels response = step( "Сделать запрос", ()->
+                     given(loginRequestSpec)
+//                             .spec(loginRequestSpec)
+                            .body(authData)
+                    .when()
+                            .post()
+                    .then()
+                             .spec(loginResponseSpec)
+                            .extract().as(LoginResponseLombokModels.class));
+
+        step( "Проверить ответ", ()->
+            assertEquals("QpwL5tke4Pnpja7X4", response.getToken()));
+    }
+
+    @Test
+    void missingPasswordTest() {
+        LoginBodyLombokModels authData = new LoginBodyLombokModels();
+        authData.setEmail("eve.holt@reqres.in");
+
+        MissingPasswordModel response = step("Make request", ()->
+                given(loginRequestSpec)
+                        .body(authData)
+
+                        .when()
+                        .post()
+
+                        .then()
+                        .spec(missingPasswordResponseSpec)
+                        .extract().as(MissingPasswordModel.class));
+
+        step("Check response", ()->
+                assertEquals("Missing password", response.getError()));
     }
 
 }

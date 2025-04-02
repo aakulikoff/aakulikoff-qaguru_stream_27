@@ -2,7 +2,7 @@ package helpers;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 
-public class CustomAllureListner {
+public class AllureListner {
     private static final AllureRestAssured FILTER = new AllureRestAssured();
 
     public static AllureRestAssured withCustomTemplates() {
