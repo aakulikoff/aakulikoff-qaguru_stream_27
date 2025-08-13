@@ -28,9 +28,9 @@ public class StatusExtendedTests extends TestBase {
                 .log().uri()
                 .log().body()
                 .log().headers()
-        .when()
+                .when()
                 .post("login")
-        .then()
+                .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
@@ -52,9 +52,9 @@ public class StatusExtendedTests extends TestBase {
                 .log().headers()
                 .contentType(JSON)
                 .body(authData)
-        .when()
+                .when()
                 .post("login")
-        .then()
+                .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
@@ -77,9 +77,9 @@ public class StatusExtendedTests extends TestBase {
                 .log().headers()
                 .contentType(JSON)
                 .body(authData)
-        .when()
+                .when()
                 .post("login")
-        .then()
+                .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
@@ -102,9 +102,9 @@ public class StatusExtendedTests extends TestBase {
                 .log().headers()
                 .contentType(JSON)
                 .body(authData)
-        .when()
+                .when()
                 .post("login")
-        .then()
+                .then()
                 .log().status()
                 .log().body()
                 .statusCode(200)
@@ -120,24 +120,24 @@ public class StatusExtendedTests extends TestBase {
         authData.setEmail("eve.holt@reqres.in");
         authData.setPassword("cityslicka");
 
-        LoginResponseLombokModels response = step( "Сделать запрос", ()->
-                     given()
-                            .filter(new AllureRestAssured())
-                            .log().uri()
-                            .log().body()
-                            .log().headers()
-                            .contentType(JSON)
-                            .body(authData)
-                    .when()
-                            .post("login")
-                    .then()
-                            .log().status()
-                            .log().body()
-                            .statusCode(200)
-                            .extract().as(LoginResponseLombokModels.class));
+        LoginResponseLombokModels response = step("Сделать запрос", () ->
+                given()
+                        .filter(new AllureRestAssured())
+                        .log().uri()
+                        .log().body()
+                        .log().headers()
+                        .contentType(JSON)
+                        .body(authData)
+                        .when()
+                        .post("login")
+                        .then()
+                        .log().status()
+                        .log().body()
+                        .statusCode(200)
+                        .extract().as(LoginResponseLombokModels.class));
 
-        step( "Проверить ответ", ()->
-            assertEquals("QpwL5tke4Pnpja7X4", response.getToken()));
+        step("Проверить ответ", () ->
+                assertEquals("QpwL5tke4Pnpja7X4", response.getToken()));
     }
 
 
@@ -148,18 +148,18 @@ public class StatusExtendedTests extends TestBase {
         authData.setEmail("eve.holt@reqres.in");
         authData.setPassword("cityslicka");
 
-        LoginResponseLombokModels response = step( "Сделать запрос", ()->
-                     given(loginRequestSpec)
+        LoginResponseLombokModels response = step("Сделать запрос", () ->
+                given(loginRequestSpec)
 //                             .spec(loginRequestSpec)
-                            .body(authData)
-                    .when()
-                            .post()
-                    .then()
-                             .spec(loginResponseSpec)
-                            .extract().as(LoginResponseLombokModels.class));
+                        .body(authData)
+                        .when()
+                        .post()
+                        .then()
+                        .spec(loginResponseSpec)
+                        .extract().as(LoginResponseLombokModels.class));
 
-        step( "Проверить ответ", ()->
-            assertEquals("QpwL5tke4Pnpja7X4", response.getToken()));
+        step("Проверить ответ", () ->
+                assertEquals("QpwL5tke4Pnpja7X4", response.getToken()));
     }
 
     @Test
@@ -167,10 +167,9 @@ public class StatusExtendedTests extends TestBase {
         LoginBodyLombokModels authData = new LoginBodyLombokModels();
         authData.setEmail("eve.holt@reqres.in");
 
-        MissingPasswordModel response = step("Make request", ()->
+        MissingPasswordModel response = step("Make request", () ->
                 given(loginRequestSpec)
                         .body(authData)
-
                         .when()
                         .post()
 
@@ -178,7 +177,7 @@ public class StatusExtendedTests extends TestBase {
                         .spec(missingPasswordResponseSpec)
                         .extract().as(MissingPasswordModel.class));
 
-        step("Check response", ()->
+        step("Check response", () ->
                 assertEquals("Missing password", response.getError()));
     }
 

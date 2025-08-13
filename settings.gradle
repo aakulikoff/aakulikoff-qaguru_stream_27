@@ -1,3 +1,4 @@
+rootProject.name = 'qaguru27'
 include '27.1'
 include '27.2'
 include '27.3'
@@ -7,4 +8,5 @@ include '27.6'
 include '27.6'
 include '27.7'
 include '27.8'
-
+include '27.15'
+include '27.16'

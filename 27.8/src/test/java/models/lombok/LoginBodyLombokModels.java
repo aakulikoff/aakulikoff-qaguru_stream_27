@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class LoginBodyLombokModels {
 
-    String email, password;
+     String email, password;
 
 
 
