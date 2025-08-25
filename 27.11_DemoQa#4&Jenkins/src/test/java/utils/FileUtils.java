@@ -41,27 +41,27 @@ public class FileUtils {
     }
 
     // Optional
-    public static String readXlsxFromFile(String file){
-        String result = "";
-        XSSFWorkbook myExcelBook = null;
-
-        try {
-            myExcelBook = new XSSFWorkbook(new FileInputStream(file));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        XSSFSheet myExcelSheet = myExcelBook.getSheetAt(0);
-        Iterator<Row> rows = myExcelSheet.iterator();
-
-        while (rows.hasNext()) {
-            Row row = rows.next();
-            Iterator<Cell> cells = row.iterator();
-            while (cells.hasNext()) {
-                Cell cell = cells.next();
-                CellType cellType = cell.getCellType();
-                //перебираем возможные типы ячеек
-                switch (cellType) {
+//    public static String readXlsxFromFile(String file){
+//        String result = "";
+//        XSSFWorkbook myExcelBook = null;
+//
+//        try {
+//            myExcelBook = new XSSFWorkbook(new FileInputStream(file));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        XSSFSheet myExcelSheet = myExcelBook.getSheetAt(0);
+//        Iterator<Row> rows = myExcelSheet.iterator();
+//
+//        while (rows.hasNext()) {
+//            Row row = rows.next();
+//            Iterator<Cell> cells = row.iterator();
+//            while (cells.hasNext()) {
+//                Cell cell = cells.next();
+//                CellType cellType = cell.getCellType();
+//                //перебираем возможные типы ячеек
+//                switch (cellType) {
 //                    case Cell.CELL_TYPE_STRING:
 //                        result += cell.getStringCellValue() + "=";
 //                        break;
@@ -72,21 +72,21 @@ public class FileUtils {
 //                    case Cell.CELL_TYPE_FORMULA:
 //                        result += "[" + cell.getNumericCellValue() + "]";
 //                        break;
-                    default:
-                        result += cell.toString();
-                        break;
-                }
-            }
-        }
-
-        try {
-            myExcelBook.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return result;
-    }
+//                    default:
+//                        result += cell.toString();
+//                        break;
+//                }
+//            }
+//        }
+//
+//        try {
+//            myExcelBook.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return result;
+//    }
 
     public static void saveFile(String content, String filePath)  {
         File file = new File(filePath);
