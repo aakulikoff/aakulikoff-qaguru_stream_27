@@ -14,7 +14,7 @@ public class SelenideExamples {
 
         open("https://google.com");
         open("/customer/orders");
-        open("/", AuthenticationType.BASIC, "user", "password");
+//        open("/", AuthenticationType.BASIC, "user", "password");
 
         Selenide.back();
 
