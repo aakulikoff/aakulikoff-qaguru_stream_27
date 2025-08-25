@@ -1,6 +1,6 @@
 package tests;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import pages.RegistrationPage;
 
 import static pages.RegistrationPage.*;
@@ -11,6 +11,7 @@ public class PracticeFormTestPO extends TestBase {
 
 
     @Test
+    @Tag("demoqa")
     void fillFullFormTestV1() {
 
         registartionPage.openPage()
@@ -31,6 +32,7 @@ public class PracticeFormTestPO extends TestBase {
     }
 
     @Test
+    @Tag("demoqa")
     void fillFullFormTestV2() {
 
         registartionPage.openPage()
@@ -60,6 +62,7 @@ public class PracticeFormTestPO extends TestBase {
     }
 
     @Test
+    @Tag("demoqa")
     void fillMinFormTest() {
 
         registartionPage.openPage()
