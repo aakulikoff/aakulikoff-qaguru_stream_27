@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class PracticeFormTest extends TestBase {
 
     @Test
+    @Tag ("demoqa")
     void fillFormTest() {
 
         open(baseUrl);
