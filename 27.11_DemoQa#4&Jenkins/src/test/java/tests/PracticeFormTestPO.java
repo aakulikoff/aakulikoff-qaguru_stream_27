@@ -3,6 +3,8 @@ package tests;
 import org.junit.jupiter.api.*;
 import pages.RegistrationPage;
 
+import java.sql.SQLOutput;
+
 import static pages.RegistrationPage.*;
 
 public class PracticeFormTestPO extends TestBase {
@@ -13,6 +15,10 @@ public class PracticeFormTestPO extends TestBase {
     @Test
     @Tag("demoqa")
     void fillFullFormTestV1() {
+//        System.setProperty("browser","");
+//        String browser = System.getProperty("browser","mozilla");
+        String browser = System.getProperty("browser");
+        System.out.println(browser);
 
         registartionPage.openPage()
                 .setFirstName(firstName)

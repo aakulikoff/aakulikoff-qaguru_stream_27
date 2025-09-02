@@ -6,17 +6,19 @@ import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
 import java.util.Map;
-
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class TestBase {
 
     @BeforeEach
     public void setUp() {
+        Configuration.browser = getBrowser();
+        Configuration.browserVersion = getBrowserVersion();
+        Configuration.browserSize = getBrowserSize();
+
         Configuration.pageLoadStrategy = "eager";
-        Configuration.browserSize = "1920x1080";
+//        Configuration.browserSize = "1920x1080";
 //        Configuration.browser = "chrome";
         Configuration.timeout = 10000;
 //        Configuration.holdBrowserOpen = true;
@@ -40,7 +42,19 @@ public class TestBase {
         Attach.addVideo();
 
         closeWebDriver();
-
     }
+
+    static String getBrowser(){
+        return System.getProperty("browser","chrome");
+    }
+
+    static String getBrowserVersion(){
+        return System.getProperty("version", null);
+    }
+
+    static String getBrowserSize(){
+        return System.getProperty("size","1920x1080");
+    }
+
 
 }
